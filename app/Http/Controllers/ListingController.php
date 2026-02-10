@@ -19,7 +19,12 @@ class ListingController extends Controller
             ->limit(8)
             ->get();
 
-        $categories = Category::query()->orderBy('name')->get();
+        $categories = Category::query()
+            ->withCount([
+                'items as active_items_count' => fn (Builder $query) => $query->where('status', 'active'),
+            ])
+            ->orderBy('id')
+            ->get();
 
         return view('listings.home', [
             'latestItems' => $latestItems,

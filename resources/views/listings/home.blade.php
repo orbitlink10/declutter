@@ -55,6 +55,41 @@
 
     <section class="mt-10">
         <div class="mb-4 flex items-center justify-between">
+            <h2 class="text-xl font-bold text-slate-900">Browse Categories</h2>
+            <a href="{{ route('listings.index') }}" class="text-sm font-semibold text-orange-700 hover:text-orange-600">See all listings</a>
+        </div>
+
+        @if ($categories->isEmpty())
+            <div class="rounded-2xl border border-dashed border-slate-300 bg-white p-8 text-center text-slate-500">
+                Categories will appear here once added.
+            </div>
+        @else
+            <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white">
+                @foreach ($categories as $category)
+                    <a
+                        href="{{ route('listings.index', ['category' => $category->slug]) }}"
+                        class="group flex items-center justify-between gap-4 border-b border-slate-100 px-5 py-4 last:border-b-0 hover:bg-slate-50"
+                    >
+                        <div class="flex items-center gap-4">
+                            <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-lg font-bold text-slate-600">
+                                {{ strtoupper(substr($category->name, 0, 1)) }}
+                            </span>
+
+                            <div>
+                                <p class="text-xl font-semibold leading-tight text-slate-800">{{ $category->name }}</p>
+                                <p class="mt-1 text-sm font-medium text-slate-500">{{ number_format($category->active_items_count) }} ads</p>
+                            </div>
+                        </div>
+
+                        <span class="text-3xl font-light leading-none text-slate-400 transition group-hover:text-orange-500" aria-hidden="true">&rsaquo;</span>
+                    </a>
+                @endforeach
+            </div>
+        @endif
+    </section>
+
+    <section class="mt-10">
+        <div class="mb-4 flex items-center justify-between">
             <h2 class="text-xl font-bold text-slate-900">Latest Active Listings</h2>
             <a href="{{ route('listings.index') }}" class="text-sm font-semibold text-orange-700 hover:text-orange-600">View all</a>
         </div>
