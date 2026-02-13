@@ -45,6 +45,8 @@ class HomepageContentSettingsTest extends TestCase
         $payload['hero_title'] = 'Sell smarter, declutter faster.';
         $payload['hero_description'] = 'Custom homepage copy controlled from the admin settings page.';
         $payload['search_button_label'] = 'Find Deals';
+        $payload['about_page_content'] = '<h2>About Us Updated</h2><p>New about content.</p>';
+        $payload['services_page_content'] = '<h2>Services Updated</h2><p>New services content.</p>';
 
         $response = $this
             ->actingAs($admin)
@@ -64,6 +66,16 @@ class HomepageContentSettingsTest extends TestCase
             ->assertSee('Sell smarter, declutter faster.')
             ->assertSee('Custom homepage copy controlled from the admin settings page.')
             ->assertSee('Find Deals');
+
+        $this->get('/about-us')
+            ->assertOk()
+            ->assertSee('About Us Updated')
+            ->assertSee('New about content.');
+
+        $this->get('/services')
+            ->assertOk()
+            ->assertSee('Services Updated')
+            ->assertSee('New services content.');
     }
 
     public function test_admin_can_upload_hero_image_for_homepage_content(): void

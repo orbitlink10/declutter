@@ -81,9 +81,35 @@
 
                         <div class="lg:col-span-2">
                             <label for="home_page_content" class="mb-2 block text-sm font-semibold text-slate-700">Home Page Content</label>
-                            <textarea id="home_page_content" name="home_page_content" rows="12" class="w-full rounded-lg border-slate-300 text-sm" required>{{ old('home_page_content', $content['home_page_content']) }}</textarea>
+                            <textarea id="home_page_content" name="home_page_content" rows="12" class="rich-editor w-full rounded-lg border-slate-300 text-sm" required>{{ old('home_page_content', $content['home_page_content']) }}</textarea>
                             <p class="mt-1 text-xs text-slate-500">You can add SEO text and HTML formatting (headings, paragraphs, links, lists).</p>
                             @error('home_page_content') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                        </div>
+                    </section>
+
+                    <section class="space-y-5 rounded-xl border border-slate-200 p-4">
+                        <h4 class="text-base font-semibold text-slate-900">Additional Pages Content</h4>
+
+                        <div>
+                            <label for="about_page_title" class="mb-2 block text-sm font-semibold text-slate-700">About Us Title</label>
+                            <input id="about_page_title" name="about_page_title" value="{{ old('about_page_title', $content['about_page_title']) }}" class="w-full rounded-lg border-slate-300 text-sm" required>
+                            @error('about_page_title') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                        </div>
+                        <div>
+                            <label for="about_page_content" class="mb-2 block text-sm font-semibold text-slate-700">About Us Content</label>
+                            <textarea id="about_page_content" name="about_page_content" rows="10" class="rich-editor w-full rounded-lg border-slate-300 text-sm" required>{{ old('about_page_content', $content['about_page_content']) }}</textarea>
+                            @error('about_page_content') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                        </div>
+
+                        <div>
+                            <label for="services_page_title" class="mb-2 block text-sm font-semibold text-slate-700">Services Title</label>
+                            <input id="services_page_title" name="services_page_title" value="{{ old('services_page_title', $content['services_page_title']) }}" class="w-full rounded-lg border-slate-300 text-sm" required>
+                            @error('services_page_title') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
+                        </div>
+                        <div>
+                            <label for="services_page_content" class="mb-2 block text-sm font-semibold text-slate-700">Services Content</label>
+                            <textarea id="services_page_content" name="services_page_content" rows="10" class="rich-editor w-full rounded-lg border-slate-300 text-sm" required>{{ old('services_page_content', $content['services_page_content']) }}</textarea>
+                            @error('services_page_content') <p class="mt-1 text-xs text-rose-600">{{ $message }}</p> @enderror
                         </div>
                     </section>
 
@@ -177,7 +203,7 @@
             }
 
             tinymce.init({
-                selector: '#home_page_content',
+                selector: 'textarea.rich-editor',
                 base_url: 'https://cdn.jsdelivr.net/npm/tinymce@7',
                 suffix: '.min',
                 height: 420,

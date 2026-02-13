@@ -9,11 +9,12 @@ use App\Http\Controllers\ListingController;
 use App\Http\Controllers\MyListingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Support\HomepageContent;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ListingController::class, 'home'])->name('home');
-Route::view('/about-us', 'pages.about')->name('about');
-Route::view('/services', 'pages.services')->name('services');
+Route::get('/about-us', fn () => view('pages.about', ['content' => HomepageContent::all()]))->name('about');
+Route::get('/services', fn () => view('pages.services', ['content' => HomepageContent::all()]))->name('services');
 Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');
 Route::get('/listings/{item:slug}', [ListingController::class, 'show'])->name('listings.show');
 

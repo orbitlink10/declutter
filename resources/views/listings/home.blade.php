@@ -7,59 +7,6 @@
 @section('meta_description', \Illuminate\Support\Str::limit(strip_tags($seoContent['home_page_content'] ?: $seoContent['hero_description']), 160))
 
 @section('content')
-    @once
-        <style>
-            .seo-rich-content { color: #334155; line-height: 1.75; }
-            .seo-rich-content h1 {
-                margin-top: 0;
-                margin-bottom: 1rem;
-                font-size: 2.25rem;
-                line-height: 1.15;
-                font-weight: 900;
-                color: #1e3a8a;
-            }
-            .seo-rich-content h2 {
-                margin-top: 2rem;
-                margin-bottom: 0.75rem;
-                font-size: 1.875rem;
-                line-height: 1.2;
-                font-weight: 800;
-                color: #1e3a8a;
-            }
-            .seo-rich-content h3 {
-                margin-top: 1.5rem;
-                margin-bottom: 0.75rem;
-                font-size: 1.5rem;
-                line-height: 1.3;
-                font-weight: 700;
-                color: #0f172a;
-            }
-            .seo-rich-content p {
-                margin-top: 1rem;
-                font-size: 1.125rem;
-                line-height: 1.8;
-            }
-            .seo-rich-content ul,
-            .seo-rich-content ol {
-                margin-top: 1rem;
-                padding-left: 1.5rem;
-            }
-            .seo-rich-content ul { list-style: disc; }
-            .seo-rich-content ol { list-style: decimal; }
-            .seo-rich-content li + li { margin-top: 0.5rem; }
-            .seo-rich-content a {
-                color: #1d4ed8;
-                text-decoration: underline;
-                font-weight: 600;
-            }
-            .seo-rich-content hr {
-                margin: 2rem 0;
-                border: 0;
-                border-top: 1px solid #e2e8f0;
-            }
-        </style>
-    @endonce
-
     @php
         $content = $seoContent;
     @endphp
