@@ -7,6 +7,59 @@
 @section('meta_description', \Illuminate\Support\Str::limit(strip_tags($seoContent['home_page_content'] ?: $seoContent['hero_description']), 160))
 
 @section('content')
+    @once
+        <style>
+            .seo-rich-content { color: #334155; line-height: 1.75; }
+            .seo-rich-content h1 {
+                margin-top: 0;
+                margin-bottom: 1rem;
+                font-size: 2.25rem;
+                line-height: 1.15;
+                font-weight: 900;
+                color: #1e3a8a;
+            }
+            .seo-rich-content h2 {
+                margin-top: 2rem;
+                margin-bottom: 0.75rem;
+                font-size: 1.875rem;
+                line-height: 1.2;
+                font-weight: 800;
+                color: #1e3a8a;
+            }
+            .seo-rich-content h3 {
+                margin-top: 1.5rem;
+                margin-bottom: 0.75rem;
+                font-size: 1.5rem;
+                line-height: 1.3;
+                font-weight: 700;
+                color: #0f172a;
+            }
+            .seo-rich-content p {
+                margin-top: 1rem;
+                font-size: 1.125rem;
+                line-height: 1.8;
+            }
+            .seo-rich-content ul,
+            .seo-rich-content ol {
+                margin-top: 1rem;
+                padding-left: 1.5rem;
+            }
+            .seo-rich-content ul { list-style: disc; }
+            .seo-rich-content ol { list-style: decimal; }
+            .seo-rich-content li + li { margin-top: 0.5rem; }
+            .seo-rich-content a {
+                color: #1d4ed8;
+                text-decoration: underline;
+                font-weight: 600;
+            }
+            .seo-rich-content hr {
+                margin: 2rem 0;
+                border: 0;
+                border-top: 1px solid #e2e8f0;
+            }
+        </style>
+    @endonce
+
     @php
         $content = $seoContent;
     @endphp
@@ -136,15 +189,7 @@
         <div class="rounded-3xl border border-slate-200 bg-white/95 p-6 shadow-sm sm:p-10">
             <h2 class="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">{{ $content['products_section_title'] }}</h2>
 
-            <div class="mt-6 border-t border-slate-200 pt-6 text-slate-700 leading-relaxed
-                [&_h1]:text-4xl [&_h1]:font-black [&_h1]:leading-tight [&_h1]:text-blue-900
-                [&_h2]:mt-8 [&_h2]:text-3xl [&_h2]:font-extrabold [&_h2]:leading-tight [&_h2]:text-blue-900
-                [&_h3]:mt-6 [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-slate-900
-                [&_p]:mt-4 [&_p]:text-xl [&_p]:leading-relaxed [&_p]:text-slate-700
-                [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:ps-6
-                [&_ol]:mt-4 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:ps-6
-                [&_a]:font-semibold [&_a]:text-blue-700 hover:[&_a]:text-blue-600 [&_a]:underline
-                [&_hr]:my-8 [&_hr]:border-slate-200">
+            <div class="seo-rich-content mt-6 border-t border-slate-200 pt-6">
                 {!! $content['home_page_content'] !!}
             </div>
         </div>
