@@ -6,6 +6,7 @@ use App\Models\SiteSetting;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
+use Throwable;
 
 class HomepageContent
 {
@@ -47,7 +48,7 @@ class HomepageContent
     {
         $defaults = self::defaults();
 
-        if (! Schema::hasTable('site_settings')) {
+        if (! self::storageReady()) {
             return $defaults;
         }
 
@@ -72,10 +73,10 @@ class HomepageContent
     /**
      * @param  array<string, string>  $values
      */
-    public static function update(array $values): void
+    public static function update(array $values): bool
     {
-        if (! Schema::hasTable('site_settings')) {
-            return;
+        if (! self::storageReady()) {
+            return false;
         }
 
         $allowedKeys = array_keys(self::defaults());
@@ -96,10 +97,25 @@ class HomepageContent
         }
 
         if ($upserts === []) {
-            return;
+            return true;
         }
 
-        SiteSetting::query()->upsert($upserts, ['key'], ['value', 'updated_at']);
+        try {
+            SiteSetting::query()->upsert($upserts, ['key'], ['value', 'updated_at']);
+        } catch (QueryException) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public static function storageReady(): bool
+    {
+        try {
+            return Schema::hasTable('site_settings');
+        } catch (Throwable) {
+            return false;
+        }
     }
 
     private static function toStorageKey(string $key): string

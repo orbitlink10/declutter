@@ -11,9 +11,21 @@
                 </div>
             @endif
 
+            @if (session('error'))
+                <div class="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @if (! $storageReady)
+                <div class="rounded-lg border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+                    Settings storage is unavailable. Run <code>php artisan migrate</code> so homepage content updates can be saved.
+                </div>
+            @endif
+
             @include('admin.partials.navigation')
 
-            <form method="POST" action="{{ route('admin.settings.homepage.update') }}" enctype="multipart/form-data" class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+            <form id="homepage-content-form" method="POST" action="{{ route('admin.settings.homepage.update') }}" enctype="multipart/form-data" class="rounded-2xl border border-slate-200 bg-white shadow-sm">
                 @csrf
                 @method('PUT')
 
@@ -176,6 +188,13 @@
                 promotion: false,
                 resize: true
             });
+
+            const form = document.getElementById('homepage-content-form');
+            if (form) {
+                form.addEventListener('submit', function () {
+                    tinymce.triggerSave();
+                });
+            }
         });
     </script>
 </x-app-layout>

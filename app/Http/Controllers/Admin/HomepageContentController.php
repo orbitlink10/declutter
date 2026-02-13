@@ -15,11 +15,18 @@ class HomepageContentController extends Controller
     {
         return view('admin.settings.homepage', [
             'content' => HomepageContent::all(),
+            'storageReady' => HomepageContent::storageReady(),
         ]);
     }
 
     public function update(UpdateHomepageContentRequest $request): RedirectResponse
     {
+        if (! HomepageContent::storageReady()) {
+            return redirect()
+                ->route('admin.settings.homepage.edit')
+                ->with('error', 'Homepage content storage is not ready. Run migrations, then try again.');
+        }
+
         $values = $request->validated();
         unset($values['hero_image']);
         $currentContent = HomepageContent::all();
@@ -34,7 +41,11 @@ class HomepageContentController extends Controller
             $values['hero_image_path'] = $newImagePath;
         }
 
-        HomepageContent::update($values);
+        if (! HomepageContent::update($values)) {
+            return redirect()
+                ->route('admin.settings.homepage.edit')
+                ->with('error', 'Could not save homepage content. Please check your database connection and try again.');
+        }
 
         return redirect()
             ->route('admin.settings.homepage.edit')
