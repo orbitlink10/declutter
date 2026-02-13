@@ -132,10 +132,21 @@
         @endif
     </section>
 
-    <section class="mt-10 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 class="text-2xl font-bold text-slate-900">{{ $content['products_section_title'] }}</h2>
-        <div class="prose prose-slate mt-4 max-w-none">
-            {!! $content['home_page_content'] !!}
+    <section class="mt-10 rounded-3xl border border-amber-100 bg-gradient-to-br from-amber-50/60 via-orange-50/40 to-white p-4 sm:p-8">
+        <div class="rounded-3xl border border-slate-200 bg-white/95 p-6 shadow-sm sm:p-10">
+            <h2 class="text-2xl font-black tracking-tight text-slate-900 sm:text-3xl">{{ $content['products_section_title'] }}</h2>
+
+            <div class="mt-6 border-t border-slate-200 pt-6 text-slate-700 leading-relaxed
+                [&_h1]:text-4xl [&_h1]:font-black [&_h1]:leading-tight [&_h1]:text-blue-900
+                [&_h2]:mt-8 [&_h2]:text-3xl [&_h2]:font-extrabold [&_h2]:leading-tight [&_h2]:text-blue-900
+                [&_h3]:mt-6 [&_h3]:text-2xl [&_h3]:font-bold [&_h3]:text-slate-900
+                [&_p]:mt-4 [&_p]:text-xl [&_p]:leading-relaxed [&_p]:text-slate-700
+                [&_ul]:mt-4 [&_ul]:list-disc [&_ul]:space-y-2 [&_ul]:ps-6
+                [&_ol]:mt-4 [&_ol]:list-decimal [&_ol]:space-y-2 [&_ol]:ps-6
+                [&_a]:font-semibold [&_a]:text-blue-700 hover:[&_a]:text-blue-600 [&_a]:underline
+                [&_hr]:my-8 [&_hr]:border-slate-200">
+                {!! $content['home_page_content'] !!}
+            </div>
         </div>
     </section>
 @endsection
