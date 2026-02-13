@@ -13,6 +13,8 @@
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
             <a href="{{ route('home') }}" class="text-xl font-extrabold tracking-tight">Declutter Kenya</a>
             <div class="flex items-center gap-4 text-sm font-medium">
+                <a href="{{ route('about') }}" class="hover:text-amber-100">About Us</a>
+                <a href="{{ route('services') }}" class="hover:text-amber-100">Services</a>
                 <a href="{{ route('listings.index') }}" class="hover:text-amber-100">Browse Listings</a>
                 @auth
                     <a href="{{ route('my.listings.create') }}" class="rounded-full bg-white px-4 py-1.5 text-orange-700">Create Listing</a>

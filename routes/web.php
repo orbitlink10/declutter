@@ -12,6 +12,8 @@ use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ListingController::class, 'home'])->name('home');
+Route::view('/about-us', 'pages.about')->name('about');
+Route::view('/services', 'pages.services')->name('services');
 Route::get('/listings', [ListingController::class, 'index'])->name('listings.index');
 Route::get('/listings/{item:slug}', [ListingController::class, 'show'])->name('listings.show');
 
