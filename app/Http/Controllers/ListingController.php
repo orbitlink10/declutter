@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Item;
+use App\Support\HomepageContent;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -29,6 +30,7 @@ class ListingController extends Controller
         return view('listings.home', [
             'latestItems' => $latestItems,
             'categories' => $categories,
+            'homepageContent' => HomepageContent::all(),
         ]);
     }
 

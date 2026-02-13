@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\HomepageContentController;
 use App\Http\Controllers\Admin\ItemModerationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FavoriteController;
@@ -49,7 +50,9 @@ Route::prefix('admin')
     ->name('admin.')
     ->middleware(['auth', 'is_admin'])
     ->group(function () {
-        Route::get('/', fn () => redirect()->route('admin.items.index'))->name('index');
+        Route::get('/', fn () => redirect()->route('admin.settings.homepage.edit'))->name('index');
+        Route::get('/settings/homepage', [HomepageContentController::class, 'edit'])->name('settings.homepage.edit');
+        Route::put('/settings/homepage', [HomepageContentController::class, 'update'])->name('settings.homepage.update');
         Route::get('/items', [ItemModerationController::class, 'index'])->name('items.index');
         Route::patch('/items/{item}/remove', [ItemModerationController::class, 'remove'])->name('items.remove');
         Route::patch('/reports/{report}/status', [ItemModerationController::class, 'updateReportStatus'])->name('reports.status');

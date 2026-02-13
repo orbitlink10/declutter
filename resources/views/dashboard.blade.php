@@ -26,6 +26,20 @@
                 </div>
             </div>
 
+            @if (auth()->user()->is_admin)
+                <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <h3 class="mb-4 text-lg font-bold text-slate-900">Admin Tools</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="{{ route('admin.settings.homepage.edit') }}" class="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800">
+                            Homepage Content
+                        </a>
+                        <a href="{{ route('admin.items.index') }}" class="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-100">
+                            Item Moderation
+                        </a>
+                    </div>
+                </div>
+            @endif
+
             <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                 <div class="mb-4 flex items-center justify-between">
                     <h3 class="text-lg font-bold text-slate-900">My Listings</h3>

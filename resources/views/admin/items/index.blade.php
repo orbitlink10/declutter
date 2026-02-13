@@ -9,6 +9,8 @@
                 <div class="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">{{ session('status') }}</div>
             @endif
 
+            @include('admin.partials.navigation')
+
             <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                 <h3 class="mb-4 text-lg font-bold text-slate-900">All Items</h3>
 

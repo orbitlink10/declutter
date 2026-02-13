@@ -14,10 +14,10 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::query()->updateOrCreate(
-            ['email' => 'admin@declutterkenya.test'],
+            ['email' => 'admin@demo.com'],
             [
                 'name' => 'Declutter Admin',
-                'password' => Hash::make('password'),
+                'password' => Hash::make('admin123'),
                 'phone' => '+254700000001',
                 'county' => 'Nairobi',
                 'town' => 'Westlands',
